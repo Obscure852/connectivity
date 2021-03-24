@@ -47,16 +47,9 @@ class _MyAppState extends State<MyApp> {
         home: BlocListener<InternetCubit,InternetState>(
           listener: (context, state){
             if(state is InternetConnected && state.connectionType == ConnectionType.wifi){
-              setState(() {
-                iconColor = Colors.red;
-                print("we are red.");
-              });
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You are on wifi.")));
             }else if(state is InternetConnected && state.connectionType == ConnectionType.mobile){
-              setState(() {
-                icon = Icons.mobile_friendly;
-                iconColor = Colors.red;
-                print("we are red.");
-              });
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You are on mobile.")));
             }
           },
           child: Scaffold(

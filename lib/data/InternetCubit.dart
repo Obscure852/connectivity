@@ -6,9 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class InternetCubit extends Cubit<InternetState>{
+
   Connectivity connectivity;
   StreamSubscription streamSubscription;
+
   InternetCubit({@required this.connectivity}): super(InternetLoading()){
+
     streamSubscription = connectivity.onConnectivityChanged.listen((connectivityResult) {
       if(connectivityResult == ConnectivityResult.wifi){
         emitInternetConnected(ConnectionType.wifi);
